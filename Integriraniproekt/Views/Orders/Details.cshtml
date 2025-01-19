@@ -1,0 +1,75 @@
+﻿@model ProektDomain.Domain.Order
+
+<h1>Order Details</h1>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Owner.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Owner.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Owner.Address)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Owner.Address)
+        </dd>
+    </dl>
+</div>
+<br />
+<h3>Books</h3>
+<table class="table">
+    <thead class="table-dark">
+    <th>#</th>
+    <th>Title</th>
+    <th>Price</th>
+    <th>Quantity</th>
+    <th>Total</th>
+    </thead>
+    <tbody>
+        @{
+            var i = 0;
+            var itemCombined = 0;
+            var total = 0;
+            foreach (var item in Model.FoodsInOrder)
+            {
+                <tr>
+                    <td>
+                        @{
+                            i = i + 1;
+                            <p>@i</p>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Foods.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Foods.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                    </td>
+                    <td>
+                        @{
+                            itemCombined = (int) item.Foods.Price * item.Quantity;
+                            total += itemCombined;
+                            <p>@itemCombined</p>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+    <tfoot>
+    <th><b>Total:</b></th>
+
+    <th></th>
+    <th></th>
+    <th></th>
+
+    <th><b>@total</b></th>
+
+    </tfoot>
+</table>

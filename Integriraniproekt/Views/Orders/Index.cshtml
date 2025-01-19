@@ -1,0 +1,47 @@
+﻿@model List<ProektDomain.Domain.Order>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<h1>Orders</h1>
+
+<table class="table">
+    <thead class="table-dark">
+        <tr>
+            <th>
+                Owner
+            </th>
+            <th>
+                Items
+            </th>
+            <th>
+                Details
+            </th>
+            <th>
+                Export
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => order.Owner.Email)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => order.FoodsInOrder.Count)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@order.Id" class="btn btn-info">Details</a>
+                </td>
+                <td>
+                    <a asp-action="CreateInvoice" asp-route-id="@order.Id" class="btn btn-info">Create Invoice</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
