@@ -1,0 +1,55 @@
+﻿﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<ProektDomain.api_domain.Book>
+
+<div class="container">
+    <div class="row m-5">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        #
+                    </th>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Genre
+                    </th>
+                    <th>
+                        Price (+10%)
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Count(); i++)
+                {
+                    var item = Model[i];
+                    <tr>
+                        <td>@(i + 1)</td>
+                        <td>
+                            @item.Title
+                        </td>
+                        <td>
+                            @item.Genre
+                        </td>
+                        <td>
+                            @((int) (@item.Price*1.1)) $
+                        </td>
+                        <td>
+                            |
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">View Book</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+        <p>This Page is #AD if you want to visit the store go to <a href="http://localhost:5095/Books">#AD</a></p>
+    </div>
+</div>
